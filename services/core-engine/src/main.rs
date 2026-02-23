@@ -67,7 +67,7 @@ async fn connect(State(s): State<Arc<AppState>>, Json(req): Json<ConnectRequest>
     let protocol = req.protocol.unwrap_or_else(|| "sdf-stream".into());
     let region = req.region.unwrap_or_else(|| "us-east-1".into());
     s.stats.lock().unwrap().total_connections += 1;
-    Json(ConnectResponse { connection_id: uuid::Uuid::new_v4().to_string(), device_id: req.device_id, protocol, region: region.clone(), endpoint: format!("wss://gateway.alice-platform.com/{}", region), status: "connected".into() })
+    Json(ConnectResponse { connection_id: uuid::Uuid::new_v4().to_string(), device_id: req.device_id, protocol, region: region.clone(), endpoint: format!("wss://gateway.alicelaw.net/{}", region), status: "connected".into() })
 }
 
 async fn sync_data(State(s): State<Arc<AppState>>, Json(_req): Json<SyncRequest>) -> Json<SyncResponse> {
